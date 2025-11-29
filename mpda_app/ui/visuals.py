@@ -120,7 +120,7 @@ class VisualWidget(QWidget):
         """Set up fallback widget when pyqtgraph is not available."""
         from PyQt6.QtWidgets import QLabel
 
-        self.plot_widget = QLabel("PyQtGraph not installed")
+        self.plot_widget = QLabel("pyqtgraph not installed")
         self.plot_widget.setStyleSheet(
             "background-color: #000000; color: #cccccc; padding: 20px;"
         )

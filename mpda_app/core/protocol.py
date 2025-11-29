@@ -12,6 +12,7 @@ SAMPLE_RATE = 44100
 PILOT_FREQ = 2200
 SYNC_BYTE = 0xAA
 EOT_BYTE = 0xFF
+DEFAULT_FREQ = 1000  # Default frequency for fallback
 
 # Frequency Maps for different track configurations
 FREQ_MAP_1_TRACK = {
@@ -327,7 +328,7 @@ class MPDATransmitter:
         signal = np.zeros(symbol_samples, dtype=np.float32)
 
         for track_idx in range(min(tracks, 8)):
-            freq = freq_map.get(track_idx, 1000)
+            freq = freq_map.get(track_idx, DEFAULT_FREQ)
             bit = (value >> (tracks - 1 - track_idx)) & 1 if tracks <= 8 else 0
 
             # Differential ASK: amplitude varies with bit value
@@ -519,7 +520,7 @@ class MPDAReceiver:
         value = 0
 
         for track_idx in range(tracks):
-            freq = freq_map.get(track_idx, 1000)
+            freq = freq_map.get(track_idx, DEFAULT_FREQ)
             power = self._goertzel_power(samples, freq)
             bit = 1 if power > 0.3 else 0
             value = (value << 1) | bit

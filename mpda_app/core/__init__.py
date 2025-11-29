@@ -3,7 +3,7 @@
 MPDA Core Module
 """
 from .audio import AudioEngine, TuneGenerator
-from .protocol import MPDATransmitter, MPDAReceiver, SAMPLE_RATE, PILOT_FREQ
+from .protocol import MPDATransmitter, MPDAReceiver, SAMPLE_RATE, PILOT_FREQ, DEFAULT_FREQ
 
 __all__ = [
     "AudioEngine",
@@ -12,4 +12,5 @@ __all__ = [
     "MPDAReceiver",
     "SAMPLE_RATE",
     "PILOT_FREQ",
+    "DEFAULT_FREQ",
 ]
